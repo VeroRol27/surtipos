@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SurtiPOS - Gestión de Roles</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #7b8993;
+            height: 60px;
+            padding: 0 20px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-left img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .header-center {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .header-right {
+            font-size: 20px;
+            color: white;
+        }
+
+        .layout {
+            display: flex;
+            height: calc(100vh - 60px);
+        }
+
+        .sidebar {
+            width: 240px;
+            background-color: #09354a;
+            color: white;
+            padding: 30px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sidebar .avatar {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar .rol {
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .sidebar button {
+            width: 100%;
+            margin: 12px 0;
+            padding: 12px;
+            background-color: #4d5861;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .sidebar button:hover {
+            background-color: #5f6a75;
+        }
+
+        .main {
+            flex: 1;
+            padding: 40px;
+        }
+
+        .main h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .btn-guardar {
+            background-color: #00334e;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+        }
+
+        .btn-guardar:hover {
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-left">
+            <img src="logo.png" alt="Logo SurtiPOS">
+        </div>
+        <div class="header-center">GESTIÓN DE ROLES</div>
+        <div class="header-right">🔔 ⚙️</div>
+    </header>
+
+    <div class="layout">
+        <div class="sidebar">
+            <div class="avatar">👤</div>
+            <div class="rol">ADMINISTRADOR</div>
+            <button>VENTA</button>
+            <button>REGISTRO DE PRODUCTOS</button>
+            <button>GESTIÓN INVENTARIOS</button>
+            <button>ACCESOS</button>
+        </div>
+
+        <div class="main">
+            <h2>Crear nuevo rol</h2>
+            <div class="form-group">
+                <label for="rol">Nombre del Rol:</label>
+                <input type="text" id="rol" placeholder="Ej. Cajero, Supervisor">
+            </div>
+            <div class="form-group">
+                <label for="descripcion">Descripción:</label>

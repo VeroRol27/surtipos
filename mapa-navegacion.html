@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mapa de Navegación - SurtiPOS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background-color: #7b8993;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        header img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .mapa {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .fila {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .pantalla {
+            background-color: #00334e;
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            min-width: 150px;
+            font-weight: bold;
+        }
+
+        .flecha {
+            font-size: 30px;
+            color: #7b8993;
+            margin: -20px 0 -10px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <img src="logo.png" alt="Logo">
+        Mapa de Navegación - SurtiPOS
+    </header>
+
+    <div class="mapa">
+        <div class="fila">
+            <div class="pantalla">Inicio de sesión</div>
+        </div>
+
+        <div class="flecha">⬇️</div>
+
+        <div class="fila">
+            <div class="pantalla">Página Principal</div>
+        </div>
+
+        <div class="flecha">⬇️</div>
+
+        <div class="fila">
+            <div class="pantalla">Venta</div>
+            <div class="pantalla">Registro de Productos</div>
+            <div class="pantalla">Gestión de Inventario</div>
+            <div class="pantalla">Accesos</div>
+        </div>
+
+        <div class="flecha">⬇️</div>
+
+        <div class="fila">
+            <div class="pantalla">Gestión de Roles</div>
+        </div>
+    </div>
+
+</body>
+
+</html>

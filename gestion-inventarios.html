@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SurtiPOS - Gestión de Inventarios</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #7b8993;
+            height: 60px;
+            padding: 0 20px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-left img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .header-center {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .header-right {
+            font-size: 20px;
+            color: white;
+        }
+
+        .layout {
+            display: flex;
+            height: calc(100vh - 60px);
+        }
+
+        .sidebar {
+            width: 240px;
+            background-color: #09354a;
+            color: white;
+            padding: 30px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sidebar .avatar {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar .rol {
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .sidebar button {
+            width: 100%;
+            margin: 12px 0;
+            padding: 12px;
+            background-color: #4d5861;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .sidebar button:hover {
+            background-color: #5f6a75;
+        }
+
+        .main {
+            flex: 1;
+            padding: 40px;
+        }
+
+        .main h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #00334e;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-left">
+            <img src="logo.png" alt="Logo SurtiPOS">
+        </div>
+        <div class="header-center">GESTIÓN DE INVENTARIOS</div>
+        <div class="header-right">🔔 ⚙️</div>
+    </header>
+
+    <div class="layout">
+        <div class="sidebar">
+            <div class="avatar">👤</div>
+            <div class="rol">ADMINISTRADOR</div>
+            <button>VENTA</button>
+            <button>REGISTRO DE PRODUCTOS</button>
+            <button>GESTIÓN INVENTARIOS</button>
+            <button>ACCESOS</button>
+        </div>
+
+        <div class="main">
+            <h2>Listado de productos en inventario</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Producto</th>
+                        <th>Categoría</th>
+                        <th>Stock</th>
+                        <th>Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>001</td>
+                        <td>Detergente XYZ</td>
+                        <td>Aseo</td>
+                        <td>50</td>
+                        <td>$8.500</td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>Galletas Oreo</td>
+                        <td>Alimentos</td>
+                        <td>120</td>
+                        <td>$2.500</td>
+                    </tr>
+                    <tr>
+                        <td>003</td>
+                        <td>Coca-Cola 600ml</td>
+                        <td>Bebidas</td>
+                        <td>80</td>
+                        <td>$3.000</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
