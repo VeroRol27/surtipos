@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SurtiPOS - Inicio de Sesión</title>
     <style>
         * {
@@ -17,7 +18,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
+            padding: 20px;
         }
 
         .login-container {
@@ -81,6 +83,53 @@
             font-size: 12px;
             color: #777;
         }
+
+         /* Estilos para tablets */
+    @media (max-width: 768px) {
+        .login-container {
+            padding: 30px;
+            max-width: 90%;
+        }
+
+        .login-container h2 {
+            font-size: 18px;
+        }
+
+        .btn-login {
+            font-size: 12px;
+            padding: 10px;
+        }
+    }
+    
+
+    /* Estilos para celulares */
+    @media (max-width: 480px) {
+        .login-container {
+            padding: 20px; /* Reduce el padding interno */
+            max-width: 95%; /* Ocupa todo el ancho disponible */
+            border-radius: 8px; /* Bordes más redondeados */
+        }
+
+        .login-container h2 {
+            font-size: 24px; /* Título más grande */
+            margin-bottom: 1.2px;
+        }
+
+        .form-group input {
+            padding: 15px; /* Inputs más grandes */
+            font-size: 18px;
+        }
+
+        .btn-login {
+            font-size: 18px; /* Botón más grande */
+            padding: 15px;
+        }
+
+        .footer {
+            font-size: 14px; /* Texto más legible */
+            margin-top: 25px;
+        }
+    }
     </style>
 </head>
 
