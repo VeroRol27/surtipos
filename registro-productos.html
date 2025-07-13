@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SurtiPOS - Registro de Productos</title>
     <style>
         * {
@@ -135,6 +136,77 @@
         .btn-guardar:hover {
             transform: translateY(-3px);
         }
+
+/* Estilos para tablets */
+@media (max-width: 1024px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 20px;
+    }
+
+    .sidebar button {
+        width: auto;
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .main {
+        padding: 25px;
+    }
+}
+
+/* Estilos para celulares */
+@media (max-width: 600px) {
+    .header-center {
+        font-size: 16px;
+    }
+
+    .sidebar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sidebar button {
+        width: 100%;
+        font-size: 18px;
+        padding: 14px;
+        margin: 6px 0;
+    }
+
+    .main {
+        padding: 15px;
+    }
+
+    .main h2 {
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .form-group label {
+        font-size: 16px;
+    }
+
+    input, select {
+        font-size: 16px;
+        padding: 14px;
+    }
+
+    .btn-guardar {
+        font-size: 18px;
+        padding: 15px;
+        width: 100%;
+        margin-top: 15px;
+    }
+}
+
+
     </style>
 </head>
 
