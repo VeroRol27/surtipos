@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SurtiPOS - Gestión de Inventarios</title>
     <style>
         * {
@@ -14,6 +15,8 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f2f5;
+            margin: 0;
+            min-height: 100vh;
         }
 
         header {
@@ -121,8 +124,75 @@
         }
 
         tr:hover {
+           
             background-color: #f2f2f2;
         }
+        /* Estilos para tablets */
+@media (max-width: 1024px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 15px;
+    }
+
+    .sidebar button {
+        width: auto;
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .main {
+        padding: 20px;
+    }
+
+    .main h2 {
+        font-size: 18px;
+    }
+}
+
+/* Estilos para celulares */
+@media (max-width: 600px) {
+    .header-center {
+        font-size: 16px;
+    }
+
+    .sidebar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .sidebar button {
+        margin: 6px 0;
+        font-size: 16px;
+    }
+
+    .main h2 {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+
+    /* Tabla responsive con scroll horizontal */
+    table {
+        display: block;
+        overflow-x: auto;
+        width: 100%;
+    }
+
+    thead {
+        min-width: 600px;
+    }
+
+    th, td {
+        font-size: 14px;
+        white-space: nowrap;
+    }
+}
+
     </style>
 </head>
 
