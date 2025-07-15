@@ -102,14 +102,14 @@
             color: #ffffff;
             font-weight: bold;
 
-
+        }
 
 
          /* Estilos para tablets */
-    @media (max-width: 768px) {
+    @media (max-width: 711px) {
         .login-container {
             padding: 30px;
-            max-width: 90%;
+            max-width: 95px;
         }
 
         .login-container h2 {
@@ -126,29 +126,41 @@
     /* Estilos para celulares */
     @media (max-width: 480px) {
         .login-container {
-            padding: 20px; /* Reduce el padding interno */
-            max-width: 95%; /* Ocupa todo el ancho disponible */
+            padding: 25px; /* Reduce el padding interno */
+            max-width: 97%; /* Ocupa todo el ancho disponible */
             border-radius: 8px; /* Bordes más redondeados */
         }
 
         .login-container h2 {
-            font-size: 24px; /* Título más grande */
+            font-size: 16px; /* Título más grande */
             margin-bottom: 1.2px;
+            padding-bottom: 10px; /* Espacio interno */
         }
 
         .form-group input {
-            padding: 15px; /* Inputs más grandes */
-            font-size: 18px;
+            padding: 9px; /* Inputs más grandes */
+            font-size: 12px;
+        }
+        .form-group label {
+            font-size: 13px; /* Etiquetas más grandes */
         }
 
         .btn-login {
-            font-size: 18px; /* Botón más grande */
-            padding: 15px;
+            font-size: 12px; /* Botón más grande */
+            padding: 12px;
         }
 
         .footer {
             font-size: 14px; /* Texto más legible */
             margin-top: 25px;
+        }
+        .logo img {
+            width: 35px; /* Logo más grande */
+            height: 35px;
+        }
+        .nombre-app {
+            font-size: 25px; /* Nombre de la app más grande */
+            margin-left: 10px; /* Espacio entre logo y nombre */
         }
     }
     </style>
