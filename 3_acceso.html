@@ -23,7 +23,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background-color: #7b8993;
+            background-color: #5b666e;
             height: 60px;
             padding: 0 20px;
         }
@@ -131,6 +131,19 @@
         .access-buttons button:hover {
             transform: translateY(-5px);
         }
+        .header-right button {
+            cursor: pointer;
+            width: 34px;
+            background-color:transparent;
+            border:none;
+                        
+        }
+        .nombre-app {
+            font-weight: bold;
+            color: #fffffd;
+            padding: 12px 0px 0px;
+            font-size: 18px;
+        }
 
     /* Responsive para tablets (pantallas menores a 1024px) */
 @media (max-width: 1024px) {
@@ -163,6 +176,7 @@
         padding: 15px 25px;
         font-size: 14px;
     }
+    
 }
 
 /* Responsive para celulares (pantallas menores a 600px) */
@@ -208,9 +222,14 @@
     <header>
         <div class="header-left">
             <img src="logo.png" alt="Logo SurtiPOS">
+             <span class="nombre-app">SurtiPOS</span>
         </div>
         <div class="header-center">ACCESOS</div>
-        <div class="header-right">🔔 ⚙️</div>
+        <div class="header-right">
+            <button>
+            <img src="svg/Setting.svg" alt="icono" >
+            </button>
+        </div>
     </header>
 
     <div class="layout">
