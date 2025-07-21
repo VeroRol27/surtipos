@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Venta - SurtiPOS</title>
+  <link rel="stylesheet" href="styleC.css">
+  <link rel="stylesheet" href="header.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-left">
+            <img src="../logo.png" alt="Logo SurtiPOS">
+        </div>
+        <div class="header-center">VENTA</div>
+        <div class="header-right">🔔 ⚙️</div>
+    </header>
+
+  <div class="container">
+    <input type="text" id="barcode-input" placeholder="Código" autofocus />
+
+    <button class="button" onclick="toggleManualForm()">Agregar producto</button>
+
+    <div id="manual-form">
+      <input type="text" id="manual-name" placeholder="Nombre del producto" />
+      <input type="number" id="manual-price" placeholder="Precio con IVA" step="1" />
+      <input type="number" id="manual-iva" placeholder="IVA %" step="1" value="19" />
+      <button class="button" onclick="addManualItem()">Ingresar</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Cantidad</th>
+              <th>Precio sin IVA</th>
+              <th>Precio con IVA</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          
+        <tbody id="cart-body"></tbody>
+      </table>
+      
+
+    <div class="summary">
+      <span id="item-count">0 artículos</span>
+      <span id="total">Total: $0.00</span>
+    </div>
+
+    <button class="button" onclick="checkout()">Generar recibo</button>
+  </div>
+  <script src="products.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
