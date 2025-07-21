@@ -29,3 +29,11 @@ header {
 .header-right {
     font-size: 20px;
 }
+
+
+.header-right button {
+    cursor: pointer;
+    width: 34px;
+    background-color: #7b8993; /* match your header */
+    border: none;
+}

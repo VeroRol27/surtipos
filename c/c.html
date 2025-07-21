@@ -14,13 +14,32 @@
             <img src="../logo.png" alt="Logo SurtiPOS">
         </div>
         <div class="header-center">VENTA</div>
-        <div class="header-right">🔔 ⚙️</div>
+        <div class="header-right">
+          <button>
+           <img src ="../svg/notifications.svg" alt="icono" width="24">
+          </button>
+          <button>
+           <img src="../svg/Setting.svg" alt="icono" width="24">
+          </button>
+      </div>
     </header>
 
   <div class="container">
+    <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+      <button class="button small-button" onclick="" style="flex: 1; display: flex; align-items: center; justify-content: center;">
+        <img src="../svg/print.svg" alt="Imprimir" width="24" style="margin-right: 8px;">
+        Imprimir
+      </button>
+      <button class="button small-button" onclick="" style="flex: 1; display: flex; align-items: center; justify-content: center;">
+        <img src="../svg/reload.svg" alt="Imprimir" width="18" style="margin-right: 8px;">
+        Reiniciar
+      </button>
+
+    </div>
+    
     <input type="text" id="barcode-input" placeholder="Código" autofocus />
 
-    <button class="button" onclick="toggleManualForm()">Agregar producto</button>
+    <button class="button small-button" onclick="toggleManualForm()">Agregar producto</button>
 
     <div id="manual-form">
       <input type="text" id="manual-name" placeholder="Nombre del producto" />
@@ -50,6 +69,8 @@
     </div>
 
     <button class="button" onclick="checkout()">Generar recibo</button>
+
+    
   </div>
   <script src="products.js"></script>
   <script src="script.js"></script>
