@@ -34,6 +34,6 @@ header {
 .header-right button {
     cursor: pointer;
     width: 34px;
-    background-color: #7b8993; /* match your header */
+    background-color: #7b8993; 
     border: none;
 }

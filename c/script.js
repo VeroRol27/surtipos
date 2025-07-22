@@ -43,7 +43,7 @@ function addManualItem() {
         return;
     }
 
-    const code = `manual-${manualCounter++}`;
+    const code = `m${manualCounter++}`;
     cart[code] = { name, price, iva: ivaPercent, quantity: 1 };
     updateCart();
 
@@ -93,10 +93,11 @@ function updateCart() {
         totalFinal += totalConIVA;
 
         const row = document.createElement("tr");
+
         row.innerHTML = `
  <td class="product-cell">
   <button class="delete-btn" onclick="removeItem('${code}')">❌</button>
-  <span>${item.name}</span>
+  <span>${ " <b> " + code + " </b> <br>" + item.name}</span>
 </td>
 
       <td>
@@ -114,7 +115,7 @@ function updateCart() {
         tbody.appendChild(row);
     }
 
-    totalSpan.innerText = `Total: ${formatCOP.format(totalFinal)}`;
+    totalSpan.innerText = `Suma Total: ${formatCOP.format(totalFinal)}`;
     countSpan.innerText = `${itemCount} artículo${itemCount !== 1 ? 's' : ''}`;
 }
 
