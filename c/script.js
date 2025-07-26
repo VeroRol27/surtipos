@@ -121,11 +121,21 @@ function updateCart() {
 
 
 function checkout() {
-    if (Object.keys(cart).length === 0) {
-        alert("No hay productos ingresados");
-        return;
-    }
-    alert("Compra realizada");
-    cart = {};
-    updateCart();
-}
+    const totalText = document.getElementById("total").textContent;
+    const match = totalText.match(/[\d,.]+/);
+  
+
+    const clean = match ? match[0].replace(/\./g, '').replace(',', '.') : "0";
+    const total = parseFloat(clean);
+  
+    const data = {
+      total: total
+      
+
+      
+    };
+  
+    const encoded = encodeURIComponent(JSON.stringify(data));
+    window.location.href = `r.html?data=${encoded}`;
+  }
+    
