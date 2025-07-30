@@ -1,5 +1,5 @@
 const products = {
-  "c1": { name: "Arroz Blanco Diana 500g", price: 2200, iva: 0 },
+  "c1": { name: "Arroz Blanco Diana 500g", price: 2200, iva: 0 , barcode: "7324234234" },
   "c2": { name: "Enjuague Bucal LISTERINE 500ml", price: 34500, iva: 19 },
   "c3": { name: "Advil Ultra x20 unds", price: 29000, iva: 0 },
   "c4": { name: "Leche Alquería Entera 1L", price: 4600, iva: 0 },

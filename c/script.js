@@ -9,23 +9,37 @@ const formatCOP = new Intl.NumberFormat("es-CO", {
     maximumFractionDigits: 0
 });
 
-document.getElementById("barcode-input").addEventListener("keypress", function (e) {
-    if (e.key === "Enter") {
-        const code = this.value.trim();
-        if (products[code]) {
-            const product = products[code];
-            if (cart[code]) {
-                cart[code].quantity += 1;
-            } else {
-                cart[code] = { ...product, quantity: 1 };
-            }
-            updateCart();
-        } else {
-            alert("Producto no encontrado.");
-        }
+document.getElementById("barcode-input").addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        const input = this.value.trim();
         this.value = "";
+
+        let product = null;
+        let matchedCode = null;
+
+        if (/^\d/.test(input)) {
+            // Barcode
+            for (let key in products) {
+                if (products[key].barcode === input) {
+                    product = products[key];
+                    matchedCode = key;
+                    break;
+                }
+            }
+        } else {
+            // Direct code like "c1"
+            product = products[input];
+            matchedCode = input;
+        }
+
+        if (product) {
+            addItemToCart(product, matchedCode);
+        } else {
+            alert("Producto no encontrado");
+        }
     }
 });
+
 
 function toggleManualForm() {
     const form = document.getElementById("manual-form");
@@ -82,22 +96,23 @@ function updateCart() {
         const hasValidIVA = typeof item.iva === "number" && !isNaN(item.iva);
         const ivaRate = hasValidIVA ? item.iva : 0;
 
-    
+
         const conIVAUnidad = item.price;
         const sinIVAUnidad = ivaRate > 0 ? conIVAUnidad / (1 + ivaRate / 100) : conIVAUnidad;
 
-    
+
         const totalConIVA = conIVAUnidad * qty;
 
         itemCount += qty;
         totalFinal += totalConIVA;
 
         const row = document.createElement("tr");
+        console.log(code);
 
         row.innerHTML = `
  <td class="product-cell">
   <button class="delete-btn" onclick="removeItem('${code}')">❌</button>
-  <span>${ " <b> " + code + " </b> <br>" + item.name}</span>
+  <span>${" <b> " + code + " </b> <br>" + item.name}</span>
 </td>
 
       <td>
@@ -123,19 +138,55 @@ function updateCart() {
 function checkout() {
     const totalText = document.getElementById("total").textContent;
     const match = totalText.match(/[\d,.]+/);
-  
+
 
     const clean = match ? match[0].replace(/\./g, '').replace(',', '.') : "0";
     const total = parseFloat(clean);
-  
-    const data = {
-      total: total
-      
 
-      
+    const data = {
+        total: total
+
+
+
     };
-  
+
     const encoded = encodeURIComponent(JSON.stringify(data));
     window.location.href = `r.html?data=${encoded}`;
-  }
-    
+}
+
+
+function addItemToCart(product, inputCode = null) {
+  
+    let existingCode = null;
+
+ 
+    for (const code in cart) {
+        if (code === inputCode) {
+            existingCode = code;
+            break;
+        }
+    }
+
+    if (existingCode) {
+        cart[existingCode].quantity += 1;
+    } else {
+        
+        const code = inputCode || product.barcode || "item" + Object.keys(cart).length;
+        cart[code] = {
+            name: product.name,
+            price: product.price,
+            iva: product.iva,
+            quantity: 1
+        };
+    }
+
+    updateCart();
+
+    const lastScanned = document.getElementById("last-scanned");
+
+
+    const barcodeDisplay = product.barcode ? ` | Código de barras: ${product.barcode}` : "";
+
+    lastScanned.textContent = `Último producto: ${inputCode}${barcodeDisplay} | ${product.name} | Precio: ${formatCOP.format(product.price)}`;
+
+}
