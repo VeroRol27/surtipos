@@ -20,8 +20,14 @@ document.getElementById("barcode-input").addEventListener("keydown", function (e
         if (/^\d/.test(input)) {
             // Barcode
             for (let key in products) {
-                if (products[key].barcode === input) {
-                    product = products[key];
+                const p = products[key];
+
+                if (Array.isArray(p.barcodes) && p.barcodes.includes(input)) {
+                    product = p;
+                    matchedCode = key;
+                    break;
+                } else if (p.barcode === input) {
+                    product = p;
                     matchedCode = key;
                     break;
                 }
@@ -156,10 +162,10 @@ function checkout() {
 
 
 function addItemToCart(product, inputCode = null) {
-  
+
     let existingCode = null;
 
- 
+
     for (const code in cart) {
         if (code === inputCode) {
             existingCode = code;
@@ -170,8 +176,9 @@ function addItemToCart(product, inputCode = null) {
     if (existingCode) {
         cart[existingCode].quantity += 1;
     } else {
-        
-        const code = inputCode || product.barcode || "item" + Object.keys(cart).length;
+
+        const code = inputCode;
+
         cart[code] = {
             name: product.name,
             price: product.price,
@@ -185,8 +192,10 @@ function addItemToCart(product, inputCode = null) {
     const lastScanned = document.getElementById("last-scanned");
 
 
-    const barcodeDisplay = product.barcode ? ` | Código de barras: ${product.barcode}` : "";
+    const barcodeDisplay = product.barcodes ? ` | Códigos: ${product.barcodes.join(", ")}` :
+    product.barcode ? ` | Código: ${product.barcode}` : "";
 
     lastScanned.textContent = `Último producto: ${inputCode}${barcodeDisplay} | ${product.name} | Precio: ${formatCOP.format(product.price)}`;
-
+    lastScanned.className = lastScanned.className === "green" ? "red" : "green";
+    
 }
