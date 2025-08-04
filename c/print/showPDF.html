@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>showPDF</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+
+        #pdfview {
+            width: 100%;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="jspdf.umd.min.js"></script>
+    <script src="IBMPlexSans-Medium-normal.js"></script>
+
+    <div id="pdfContainer"></div>
+
+    <script>
+
+        const formatCOP = new Intl.NumberFormat("es-CO", {
+            style: "currency",
+            currency: "COP",
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0
+        });
+
+
+
+        let url_string = window.location.href;
+        let url = new URL(url_string);
+        let productListRaw = url.searchParams.get("productsList");
+
+        let productList = [];
+
+        try {
+            productList = JSON.parse(productListRaw);
+        } catch (err) {
+            alert("Error al leer los productos para imprimir.");
+            console.error(err);
+        }
+
+        let userFontSize = 8;
+        let userXOffsetAdd = 0;
+        let justSee = true; // change to false to always auto-print
+
+        function loadpdf(justSee) {
+            const date = new Date();
+            const fecha = `${date.getDate().toString().padStart(2, "0")}-${(date.getMonth() + 1).toString().padStart(2, "0")}-${date.getFullYear()}`;
+            const hora = `${date.getHours().toString().padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}:${date.getSeconds().toString().padStart(2, "0")}`;
+
+            let topOfPDF =
+                `                                     
+                            Bienvenido a SurtiPOS                          
+                            CR52 #34C - 91SUR
+                            Telefono 0001-002
+                                COLOMBIA
+
+RECIBO DE VENTA Nro 1
+Vendedor: CajeroA1
+
+Cant  Descripción              Total
+______________________________________`.split("\n");
+
+            let totalPrice = 0;
+
+            for (let item of productList) {
+                const quantity = item.quantity ?? 1;
+                const name = item.name?.toString().replace(/\n/g, " ") || "Producto sin nombre";
+                const price = parseFloat(item.price) || 0;
+
+                const total = price * quantity;
+                totalPrice += total;
+
+                const totalProduct = formartNum(total);
+
+                topOfPDF.push(`\n${quantity.toString().padStart(3, "0")}   ${name.slice(0, 22).padEnd(22, " ")} ${totalProduct.toString().padStart(8, " ")}\n`);
+            }
+
+            topOfPDF.push(`\n\nTOTAL: ${formartNum(totalPrice)} \n\n\n\n Gracias por su compra`);
+
+            let xoffset = 4 + userXOffsetAdd;
+            let ySum = 4;
+            let y = 5;
+
+            let height = topOfPDF.length * ySum + 25;
+            if (height < 75) height = 175;
+
+            const doc = new jspdf.jsPDF({
+                orientation: "portrait",
+                unit: "mm",
+                format: [72, height + 5]
+            });
+
+           
+            doc.setFont("IBMPlexSans-Medium")
+            doc.setFontSize(userFontSize);
+            doc.text(`Fecha: ${fecha} Hora: ${hora}`, xoffset, 3);
+
+            for (let line of topOfPDF) {
+                doc.text(line, xoffset - 3, y);
+                y += ySum;
+            }
+
+            doc.text("-------", xoffset, y + 15);
+
+            if (!justSee) {
+                doc.autoPrint({ variant: 'non-conform' });
+            }
+
+            document.getElementById("pdfContainer").innerHTML = `
+        <embed id="pdfview" src="${doc.output("dataurlstring")}" type="application/pdf">
+      `;
+        }
+
+        function formartNum(num) {
+            return formatCOP.format(num);
+        }
+
+        loadpdf(justSee);
+    </script>
+</body>
+
+</html>
