@@ -33,7 +33,7 @@ document.getElementById("barcode-input").addEventListener("keydown", function (e
                 }
             }
         } else {
-            // Direct code like "c1"
+           
             product = products[input];
             matchedCode = input;
         }
@@ -141,23 +141,47 @@ function updateCart() {
 }
 
 
+function calculateTotal() {
+    let total = 0;
+    const rows = document.querySelectorAll("#cart-body tr");
+
+    rows.forEach(row => {
+        const totalCell = row.querySelector("td:last-child");
+        if (totalCell) {
+            // Remove $ and dots, convert to number
+            const value = parseFloat(totalCell.textContent.replace(/[^\d]/g, ""));
+            if (!isNaN(value)) {
+                total += value;
+            }
+        }
+    });
+
+    return total;
+}
+
 function checkout() {
-    const totalText = document.getElementById("total").textContent;
-    const match = totalText.match(/[\d,.]+/);
+    const total = calculateTotal(); 
+    const data = encodeURIComponent(JSON.stringify({ total }));
+    window.open(`r.html?data=${data}`, 'popup', 'width=500,height=600');
+}
 
 
-    const clean = match ? match[0].replace(/\./g, '').replace(',', '.') : "0";
-    const total = parseFloat(clean);
+window.addEventListener("message", function (event) {
+    if (event.data?.type === "finalizarCompra") {
+        const confirmPrint = confirm("¿Desea imprimir el recibo?");
 
-    const data = {
-        total: total
+        if (confirmPrint) {
+            document.body.querySelector("#btn-print").click()
+            
+        }
 
+        
+        location.reload();
+    }
+});
 
-
-    };
-
-    const encoded = encodeURIComponent(JSON.stringify(data));
-    window.location.href = `r.html?data=${encoded}`;
+function clearCart() {
+    location.reload();
 }
 
 
@@ -193,9 +217,9 @@ function addItemToCart(product, inputCode = null) {
 
 
     const barcodeDisplay = product.barcodes ? ` | Códigos: ${product.barcodes.join(", ")}` :
-    product.barcode ? ` | Código: ${product.barcode}` : "";
+        product.barcode ? ` | Código: ${product.barcode}` : "";
 
     lastScanned.textContent = `Último producto: ${inputCode}${barcodeDisplay} | ${product.name} | Precio: ${formatCOP.format(product.price)}`;
     lastScanned.className = lastScanned.className === "green" ? "red" : "green";
-    
+
 }

@@ -59,10 +59,10 @@
 
             let topOfPDF =
                 `                                     
-                            Bienvenido a SurtiPOS                          
-                            CR52 #34C - 91SUR
-                            Telefono 0001-002
-                                COLOMBIA
+        Bienvenido a SurtiPOS                          
+          CR52 #34C - 91SUR
+          Telefono 0001-002
+              COLOMBIA
 
 RECIBO DE VENTA Nro 1
 Vendedor: CajeroA1
@@ -85,7 +85,7 @@ ______________________________________`.split("\n");
                 topOfPDF.push(`\n${quantity.toString().padStart(3, "0")}   ${name.slice(0, 22).padEnd(22, " ")} ${totalProduct.toString().padStart(8, " ")}\n`);
             }
 
-            topOfPDF.push(`\n\nTOTAL: ${formartNum(totalPrice)} \n\n\n\n Gracias por su compra`);
+            topOfPDF.push(`\n\nTOTAL: ${formartNum(totalPrice)} \n\n\n\nGracias por su compra`);
 
             let xoffset = 4 + userXOffsetAdd;
             let ySum = 4;
@@ -110,7 +110,6 @@ ______________________________________`.split("\n");
                 y += ySum;
             }
 
-            doc.text("-------", xoffset, y + 15);
 
             if (!justSee) {
                 doc.autoPrint({ variant: 'non-conform' });

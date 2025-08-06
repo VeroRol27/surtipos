@@ -98,8 +98,12 @@
         }
 
         function finalizarCompra() {
-            window.location.href = "c.html";
+            if (window.opener && !window.opener.closed) {
+                window.opener.postMessage({ type: "finalizarCompra" }, "*");
+            }
+            window.close(); 
         }
+
 
 
         function calcularCambio() {
