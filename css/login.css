@@ -1,0 +1,157 @@
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5f3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            background-color: #033651;
+        }
+
+        .login-container {
+            background-color: #ffffff;
+            padding: 60px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 200%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+       .login-container h2 {
+            margin-bottom: 30px;
+            font-size: 20px;
+            color: #00334e;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .btn-login {
+            background-color: #00334e;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-login:hover {
+            background-color: #005f85;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #777;
+        }
+    
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    margin-bottom: 5px; /* Espacio razonable entre logo y formulario */
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+    
+}
+        .nombre-app {
+            font-size: 30px;
+            color: #ffffff;
+            font-weight: bold;
+
+        }
+
+
+         /* Estilos para tablets */
+    @media (max-width: 711px) {
+        .login-container {
+            padding: 30px;
+            max-width: 95px;
+        }
+
+        .login-container h2 {
+            font-size: 18px;
+        }
+
+        .btn-login {
+            font-size: 12px;
+            padding: 10px;
+        }
+    }
+    
+
+    /* Estilos para celulares */
+    @media (max-width: 480px) {
+        .login-container {
+            padding: 25px; /* Reduce el padding interno */
+            max-width: 97%; /* Ocupa todo el ancho disponible */
+            border-radius: 8px; /* Bordes más redondeados */
+        }
+
+        .login-container h2 {
+            font-size: 16px; /* Título más grande */
+            margin-bottom: 1.2px;
+            padding-bottom: 10px; /* Espacio interno */
+        }
+
+        .form-group input {
+            padding: 9px; /* Inputs más grandes */
+            font-size: 12px;
+        }
+        .form-group label {
+            font-size: 13px; /* Etiquetas más grandes */
+        }
+
+        .btn-login {
+            font-size: 12px; /* Botón más grande */
+            padding: 12px;
+        }
+
+        .footer {
+            font-size: 14px; /* Texto más legible */
+            margin-top: 25px;
+        }
+        .logo img {
+            width: 35px; /* Logo más grande */
+            height: 35px;
+        }
+        .nombre-app {
+            font-size: 25px; /* Nombre de la app más grande */
+            margin-left: 10px; /* Espacio entre logo y nombre */
+        }
+    }

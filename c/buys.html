@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Confirmar Compra</title>
+    <link rel="stylesheet" href="styleC.css" />
+    <link rel="stylesheet" href="header.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="header-left">
+            <img src="/image/logo.png" alt="Logo SurtiPOS">
+        </div>
+        <div class="header-center">Confirmar Compra</div>
+        <div class="header-right">
+            <button>
+                <img src="../svg/notifications.svg" alt="icono" width="24">
+            </button>
+            <button>
+                <img src="../svg/Setting.svg" alt="icono" width="24">
+            </button>
+        </div>
+    </header>
+
+
+    <div class="container">
+
+
+
+        <h2>Resumen de Compra</h2>
+        <p id="total"></p>
+
+        <label for="pago">Medio de pago:</label>
+        <select id="pago" onchange="handlePagoChange()">
+            <option value="">--Medio de Pago--</option>
+            <option value="efectivo">Efectivo</option>
+            <option value="nequi">Nequi</option>
+            <option value="tarjeta_debito">Tarjeta Débito</option>
+            <option value="tarjeta_credito">Tarjeta Crédito</option>
+        </select>
+
+
+        <div id="efectivo-info" style="display: none;">
+            <label for="recibido">Cantidad recibida:</label>
+            <input type="number" id="recibido" oninput="calcularCambio()" />
+            <p id="recibido-formatted"></p> <!-- NEW LINE -->
+            <p id="cambio"></p>
+        </div>
+
+
+        <div id="efectivo-info" style="display: none;">
+            <label for="recibido">Cantidad recibida:</label>
+            <input type="number" id="recibido" oninput="calcularCambio()" />
+            <p id="cambio"></p>
+        </div>
+
+
+        <button class="button" onclick="finalizarCompra()">Finalizar compra</button>
+    </div>
+
+    <script>
+        const formatter = new Intl.NumberFormat('es-CO', {
+            style: 'currency',
+            currency: 'COP',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0
+        });
+
+        const params = new URLSearchParams(window.location.search);
+        let data = { total: 0 };
+
+        try {
+            const rawData = params.get("data");
+            if (rawData) {
+                data = JSON.parse(decodeURIComponent(rawData));
+            }
+        } catch (e) {
+            console.error("Error decoding data:", e);
+        }
+
+        document.getElementById("total").textContent = `Total a pagar: ${formatter.format(data.total)}`;
+
+        function handlePagoChange() {
+            const pago = document.getElementById("pago").value;
+            const efectivoDiv = document.getElementById("efectivo-info");
+            efectivoDiv.style.display = pago === "efectivo" ? "block" : "none";
+        }
+
+        function calcularCambio() {
+            const recibido = parseFloat(document.getElementById("recibido").value);
+            if (!isNaN(recibido)) {
+                const cambio = recibido - data.total;
+                document.getElementById("cambio").textContent = `Cambio: ${formatter.format(cambio)}`;
+            }
+        }
+
+        function finalizarCompra() {
+            if (window.opener && !window.opener.closed) {
+                window.opener.postMessage({ type: "finalizarCompra" }, "*");
+            }
+            window.close(); 
+        }
+
+
+
+        function calcularCambio() {
+            const recibidoInput = document.getElementById("recibido");
+            const recibido = parseFloat(recibidoInput.value);
+
+            if (!isNaN(recibido)) {
+                document.getElementById("recibido-formatted").textContent = `Recibido: ${formatter.format(recibido)}`;
+
+                const cambio = recibido - data.total;
+                document.getElementById("cambio").textContent = `Cambio: ${formatter.format(cambio)}`;
+            } else {
+                document.getElementById("recibido-formatted").textContent = "";
+                document.getElementById("cambio").textContent = "";
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
