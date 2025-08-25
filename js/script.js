@@ -162,7 +162,7 @@ function calculateTotal() {
 function checkout() {
     const total = calculateTotal(); 
     const data = encodeURIComponent(JSON.stringify({ total }));
-    window.open(`r.html?data=${data}`, 'popup', 'width=500,height=600');
+    window.open(`buys.html?data=${data}`, 'popup', 'width=500,height=600');
 }
 
 
