@@ -19,5 +19,5 @@ function printReceipt() {
     }
 
     const encodedData = encodeURIComponent(JSON.stringify(productList));
-    window.open(`print/showPDF.html?productsList=${encodedData}`, "_blank");
+    window.open(`showPDF.html?productsList=${encodedData}`, "_blank");
 }

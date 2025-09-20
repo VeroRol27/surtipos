@@ -14,7 +14,7 @@
     <!-- ENCABEZADO -->
     <header>
         <div class="header-left">
-            <img src="logo.png" alt="Logo SurtiPOS">
+            <img src="image/logo.png" alt="Logo SurtiPOS">
             <span class="nombre-app">SurtiPOS</span>
         </div>
         <div class="header-center">PÁGINA PRINCIPAL</div>
@@ -34,10 +34,21 @@
         <div class="sidebar">
             <div class="avatar">👤</div>
             <div class="rol">ADMINISTRADOR</div>
-            <button>VENTA</button>
-            <button>REGISTRO DE PRODUCTOS</button>
-            <button>GESTIÓN INVENTARIOS</button>
-            <button>ACCESOS</button>
+            <button class="btn-productos" onclick="window.location.href='sale.html'">
+                VENTA
+            </button>
+            
+            <button class="btn-productos" onclick="window.location.href='registro-productos.html'">
+                REGISTRO DE PRODUCTOS
+            </button>
+            <button class="btn-productos" onclick="window.location.href='gestion-inventarios.html'">
+                GESTIÓN INVENTARIOS
+            </button>
+            
+            <button class="btn-productos" onclick="window.location.href='gestion-roles.html'">
+                ACCESOS
+            </button>
+           
         </div>
 
         <!-- ZONA DE TRABAJO -->

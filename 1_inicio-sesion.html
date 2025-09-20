@@ -12,7 +12,7 @@
     
        <div class="main-container">
         <div class="logo">
-            <img src="logo.png" alt="Logo SurtiPOS">
+            <img src="image/logo.png" alt="Logo SurtiPOS">
             <span class="nombre-app">SurtiPOS</span>
         </div>
     <div class="login-container">
@@ -35,6 +35,37 @@
             © 2025 SurtiPOS
         </div>
     </div>
+
+
+    <script>
+        document.querySelector(".btn-login").addEventListener("click", () => {
+            const usuario = document.getElementById("usuario").value;
+            const password = document.getElementById("password").value;
+        
+            fetch("http://127.0.0.1:5000/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ usuario, password })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    alert( data.message);
+       
+                    window.location.href = "2_pagina-principal.html";
+                } else {
+                    alert( data.message);
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert("Error de conexión con el servidor");
+            });
+        });
+        </script>
+        
 
 </body>
 

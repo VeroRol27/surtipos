@@ -148,7 +148,6 @@ function calculateTotal() {
     rows.forEach(row => {
         const totalCell = row.querySelector("td:last-child");
         if (totalCell) {
-            // Remove $ and dots, convert to number
             const value = parseFloat(totalCell.textContent.replace(/[^\d]/g, ""));
             if (!isNaN(value)) {
                 total += value;
